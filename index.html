@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#ffd21c" name="theme-color"/>
+<title>Comic Tools Hub</title>
+
+
+
+
+
+
+
+
+
+<link href="style.css" rel="stylesheet"/></head>
+<body>
+<!-- =========================
+     TOP BAR
+========================= -->
+<header class="topbar">
+<a class="logo" href="#home">
+<span class="logoMark">✦</span>
+<span>COMIC TOOLS</span>
+</a>
+<nav class="nav" id="nav">
+<a href="#home">Home</a>
+<a href="#tools">Tools</a>
+<a href="#about">About</a>
+</nav>
+<button aria-label="Menu" class="menuBtn" onclick="toggleNav()">
+    ☰
+  </button>
+</header>
+<!-- =========================
+     HERO
+========================= -->
+<section class="hero" id="home">
+<div class="heroBox">
+<div class="heroContent">
+<div class="kicker">
+        ⚡ ALL TOOLS HUB
+      </div>
+<h1>
+        YOUR DAILY<br/>
+        COMIC TOOLBOX
+      </h1>
+<p>
+        Kumpulan tools praktis dengan
+        tampilan comic yang ringan,
+        responsif, dan nyaman dipakai di HP.
+      </p>
+<div class="badges">
+<span class="badge">
+          ✦ FAST
+        </span>
+<span class="badge">
+          ☾ MOBILE
+        </span>
+<span class="badge">
+          ⌁ EASY UI
+        </span>
+</div>
+<div aria-label="Status perangkat dan API" class="heroStatus">
+<div class="statusItem statusClock">
+<span class="statusIcon">◷</span>
+<span><b id="heroClock">--:--:--</b><small>WAKTU HP</small></span>
+</div>
+<div class="statusItem statusPing">
+<span class="statusIcon">⌁</span>
+<span><b id="heroPing">-- ms</b><small>PING API</small></span>
+</div>
+<div class="statusItem statusBattery">
+<span class="statusIcon" id="batteryIcon">▰</span>
+<span><b id="heroBattery">--%</b><small>BATERAI HP</small></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================
+     SEARCH
+========================= -->
+<div class="controls">
+<input class="search" id="search" oninput="render()" placeholder="🔎 Cari tools..." type="text"/>
+<div class="filters">
+<button class="filter active" onclick="setFilter('all',this)">
+      Semua
+    </button>
+<button class="filter" onclick="setFilter('download',this)">
+      Download
+    </button>
+<button class="filter" onclick="setFilter('media',this)">
+      Media
+    </button>
+<button class="filter" onclick="setFilter('maker',this)">
+      Maker
+    </button>
+<button class="filter" onclick="setFilter('utility',this)">
+      Utility
+    </button>
+</div>
+</div>
+
+<!-- =========================
+     TOOLS
+========================= -->
+<main id="tools">
+<div class="sectionTitle">
+<h2>
+      ✦ SEMUA TOOLS
+    </h2>
+<span class="count" id="count"></span>
+</div>
+<div class="grid" id="grid"></div>
+<div class="empty" id="empty">
+    Tool yang kamu cari belum ada.
+  </div>
+</main>
+<!-- =========================
+     ABOUT
+========================= -->
+<section id="about">
+<div class="info-comic-about">
+<div class="info-comic-title about-title">
+<span>🦸</span>
+<div><h2>TENTANG</h2></div>
+</div>
+<div class="about-comic-card">
+<h3>COMIC TOOLS HUB</h3>
+<p>Kumpulan tools online dengan tampilan comic yang ringan, responsif, dan nyaman dipakai di HP.</p>
+<p class="about-made">Dibuat Oleh <b>Iwawgabut</b></p>
+<div class="about-chip-row">
+<a class="about-chip" href="https://t.me/laxofc" rel="noopener" target="_blank">✈️ @laxofc</a>
+<a class="about-chip" data-link-placeholder="all-sosmed-dev" href="#">🔗 All Sosmed Dev</a>
+<a class="about-chip" data-link-placeholder="whatsapp-channel" href="#">💬 Saluran WhatsApp</a>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================
+     FOOTER
+========================= -->
+<footer>
+
+  Made with
+  <b>✦ comic vibes</b>
+  · 2026
+
+</footer>
+
+<!-- =========================
+     DEDICATED TOOL PAGE
+========================= -->
+<section aria-label="Halaman tool" id="toolPage">
+<div class="toolPageShell">
+<a class="toolBack" href="javascript:void(0)" onclick="location.href=location.pathname" role="button">← KEMBALI KE SEMUA TOOLS</a>
+<div class="toolPageHead">
+<span class="toolPageIcon" id="toolPageIcon">✦</span>
+<div><span class="toolPageKicker">COMIC TOOL</span><h1 id="toolPageTitle">TOOL</h1></div>
+</div>
+<div class="toolPageBody" id="toolPageBody"></div>
+</div>
+</section>
+<div aria-hidden="true" class="toolModal" id="toolModal"><div aria-labelledby="modalTitle" aria-modal="true" class="modalBox" role="dialog"><button class="modalClose" onclick="closeTool()">×</button><h2 id="modalTitle">Tool</h2><div id="modalBody"></div></div></div>
+
+
+
+
+
+
+<!-- =========================
+     WHATSAPP CHANNEL WELCOME POPUP
+========================= -->
+
+<!-- =========================
+     WHATSAPP CHANNEL TOP NOTIFICATION
+========================= -->
+
+<div aria-hidden="true" aria-live="polite" class="waChannelToast" id="waChannelToast" role="status">
+<div aria-hidden="true" class="waChannelToastIcon">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 7.5C14.89 7.5 7.5 14.65 7.5 23.47c0 3.1.93 6 2.54 8.49L7.5 40.5l8.83-2.84a16.83 16.83 0 0 0 7.67 1.83c9.11 0 16.5-7.15 16.5-16.02S33.11 7.5 24 7.5Z" stroke="#20df79" stroke-width="2.7"></path>
+<path d="M18.1 16.9c.45-.51 1.05-.48 1.55-.08l2.23 1.78c.47.38.6 1.03.31 1.56l-1.02 1.83c1.06 2.16 2.74 3.82 4.9 4.88l1.82-1.03c.53-.3 1.19-.17 1.56.3l1.78 2.24c.4.5.43 1.1-.08 1.55-.8.72-1.82 1.1-2.9 1.02-3.6-.28-7.17-2.14-9.83-4.8-2.66-2.66-4.52-6.23-4.8-9.83-.08-1.08.3-2.1 1.02-2.9l.46-.52Z" fill="#20df79"></path>
+</svg>
+</div>
+<div class="waChannelToastBody">
+<div class="waChannelToastTitle">LAXX OFFICIAL</div>
+<div class="waChannelToastText">📢 Join WhatsApp Channel sekarang!</div>
+</div>
+<a class="waChannelToastJoin" href="https://whatsapp.com/channel/0029Vb8HCNIKLaHxcSsRKZ34" rel="noopener noreferrer" target="_blank">JOIN CH</a>
+<button aria-label="Tutup" class="waChannelToastClose" type="button">×</button>
+</div>
+<div aria-hidden="true" class="waWelcomeOverlay" id="waWelcomeOverlay">
+<div aria-label="WhatsApp Channel" aria-modal="true" class="waWelcomeCard" role="dialog">
+<button aria-label="Tutup" class="waWelcomeClose" onclick="closeWaWelcome()" type="button">×</button>
+<div class="waWelcomeTop">
+<div aria-hidden="true" class="waWelcomeIcon">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 7.5C14.89 7.5 7.5 14.65 7.5 23.47c0 3.1.93 6 2.54 8.49L7.5 40.5l8.83-2.84a16.83 16.83 0 0 0 7.67 1.83c9.11 0 16.5-7.15 16.5-16.02S33.11 7.5 24 7.5Z" stroke="#20df79" stroke-width="2.7"></path>
+<path d="M18.1 16.9c.45-.51 1.05-.48 1.55-.08l2.23 1.78c.47.38.6 1.03.31 1.56l-1.02 1.83c1.06 2.16 2.74 3.82 4.9 4.88l1.82-1.03c.53-.3 1.19-.17 1.56.3l1.78 2.24c.4.5.43 1.1-.08 1.55-.8.72-1.82 1.1-2.9 1.02-3.6-.28-7.17-2.14-9.83-4.8-2.66-2.66-4.52-6.23-4.8-9.83-.08-1.08.3-2.1 1.02-2.9l.46-.52Z" fill="#20df79"></path>
+</svg>
+</div>
+<div>
+<h3 class="waWelcomeName">LAXX OFFICIAL</h3>
+<p class="waWelcomeSub">WhatsApp<br/>Channel</p>
+<span class="waWelcomeStatus"><i></i> LIVE</span>
+</div>
+</div>
+<a class="waWelcomeJoin" href="https://whatsapp.com/channel/0029Vb8HCNIKLaHxcSsRKZ34" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 7.5C14.89 7.5 7.5 14.65 7.5 23.47c0 3.1.93 6 2.54 8.49L7.5 40.5l8.83-2.84a16.83 16.83 0 0 0 7.67 1.83c9.11 0 16.5-7.15 16.5-16.02S33.11 7.5 24 7.5Z" stroke="white" stroke-width="2.8"></path>
+<path d="M18.1 16.9c.45-.51 1.05-.48 1.55-.08l2.23 1.78c.47.38.6 1.03.31 1.56l-1.02 1.83c1.06 2.16 2.74 3.82 4.9 4.88l1.82-1.03c.53-.3 1.19-.17 1.56.3l1.78 2.24c.4.5.43 1.1-.08 1.55-.8.72-1.82 1.1-2.9 1.02-3.6-.28-7.17-2.14-9.83-4.8-2.66-2.66-4.52-6.23-4.8-9.83-.08-1.08.3-2.1 1.02-2.9l.46-.52Z" fill="white"></path>
+</svg>
+      JOIN CHANNEL
+    </a>
+</div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="app.js"></script></body></html>
